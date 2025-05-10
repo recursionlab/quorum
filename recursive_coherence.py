@@ -25,6 +25,7 @@ import json
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("recursive_coherence")
+from dataclasses import dataclass, field
 
 @dataclass
 class CoherenceComponentConfig:
@@ -36,20 +37,20 @@ class CoherenceComponentConfig:
     recovery_rate: float = 0.02
     critical_threshold: float = 0.1
 
-
 @dataclass
 class CoherenceConfig:
     """Configuration for the Recursive Coherence Function."""
-    signal_alignment: CoherenceComponentConfig = CoherenceComponentConfig()
-    feedback_responsiveness: CoherenceComponentConfig = CoherenceComponentConfig()
-    bounded_integrity: CoherenceComponentConfig = CoherenceComponentConfig()
-    elastic_tolerance: CoherenceComponentConfig = CoherenceComponentConfig()
-    
+    signal_alignment: CoherenceComponentConfig = field(default_factory=CoherenceComponentConfig)
+    feedback_responsiveness: CoherenceComponentConfig = field(default_factory=CoherenceComponentConfig)
+    bounded_integrity: CoherenceComponentConfig = field(default_factory=CoherenceComponentConfig)
+    elastic_tolerance: CoherenceComponentConfig = field(default_factory=CoherenceComponentConfig)
+
     overall_threshold: float = 0.7
     critical_threshold: float = 0.3
     stabilization_enabled: bool = True
     history_length: int = 100
     log_level: str = "INFO"
+
 
 
 class PhaseVector:
@@ -846,4 +847,5 @@ class BeverlyBandCalculator:
         self.base_width = base_width
         self.current_band_width = base_width
     
-    def calculate_band(self,
+    def calculate_band(self):
+        pass
